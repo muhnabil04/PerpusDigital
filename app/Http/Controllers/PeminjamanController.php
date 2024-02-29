@@ -23,6 +23,13 @@ class PeminjamanController extends Controller
         return view('user.peminjam.index', compact('title', 'buku'));
     }
 
+    public function cari(Request $request)
+    {
+        $cari = $request->cari;
+        $title = "peminjaman";
+        $buku = buku::where('judul', 'like', "%" . $cari . "%")->orWhere('penerbit', 'like', "%" . $cari . "%")->orWhere('penerbit', 'like', "%" . $cari . "%")->orWhere('TahunTerbit', 'like', "%" . $cari . "%")->paginate(6);
+        return view('user.peminjam.index', compact('title', 'buku'));
+    }
 
 
     public function riwayatPeminjaman()

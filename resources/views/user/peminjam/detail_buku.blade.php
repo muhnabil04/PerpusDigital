@@ -18,6 +18,7 @@
                         <p class="card-text">Penerbit: {{ $buku->penerbit }}</p>
                         <p class="card-text">Tahun Terbit: {{ $buku->TahunTerbit }}</p>
                         <p class="card-text">Kategori: {{ $buku->kategori->nama_kategori }}</p>
+                        <p class="card-text">Deskrispi: {{ $buku->deskripsi }}</p>
                         <!-- Add more details as needed -->
                     </div>
                 </div>
@@ -49,7 +50,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-{{ $ulasan->links() }}
+                        {{ $ulasan->links() }}
                     </div>
                 </div>
             </div>

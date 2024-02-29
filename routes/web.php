@@ -63,6 +63,7 @@ Route::middleware(['auth', 'role:admin|petugas'])->group(function () {
 Route::middleware(['auth', 'role:peminjam'])->group(function () {
     //peminjam 
     Route::get('peminjam/buku', [PeminjamanController::class, 'index'])->name('peminjam.buku.index');
+     Route::get('peminjam/buku/cari', [PeminjamanController::class, 'cari'])->name('peminjam.buku.cari');
     Route::get('peminjam/buku/detail/{id}', [PeminjamanController::class, 'show'])->name('peminjam.buku.show');
     Route::get('peminjam/pinjamanku', [PeminjamanController::class, 'peminjaman'])->name('peminjam.buku.peminjam');
     Route::get('peminjam/pinjam/{id}', [PeminjamanController::class, 'edit'])->name('peminjam.buku.edit');

@@ -6,8 +6,11 @@
 </head>
 
 <body>
-    <h1>Riwayat Peminjaman</h1>
-    <table class="table table-bordered">
+    <center>
+        <h3>Perpustakaan Digital SMKN 6 KENDARI</h3>
+    </center>
+    <p>Riwayat Peminjaman</p>
+    <table class="table table-bordered" style="bordered">
         <thead>
             <th>No</th>
             <th>peminjam</th>
@@ -25,7 +28,7 @@
                 <tr>
                     <td>{{ $no++ }}</td>
                     <td>{{ $item->user->name }}</td>
-                    <td>{{ $item->buku->judul }}</td>
+                    <td>{{ $item->buku->judul }}</td>[]
                     <td>{{ $item->buku->penulis }}</td>
                     <td>{{ $item->buku->penerbit }}</td>
                     <td>{{ $item->tanggal_peminjaman }}</td>

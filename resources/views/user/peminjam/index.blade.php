@@ -1,11 +1,22 @@
 @extends('template/main')
 
 @section('content')
+    <form action="{{ route('peminjam.buku.cari') }}">
+        <div class="row">
+            <div class="input-group col-md-4">
+                <input type="search" class="form-control rounded w-6px " placeholder="Cari Buku...." aria-label="Search"
+                    name="cari" aria-describedby="search-addon" />
+                <button type="submit" class="btn btn-outline-primary" data-mdb-ripple-init>Cari</button>
+            </div>
+        </div>
+    </form>
+
     <div class="table-responsive">
         <table class="table table-bordered mt-4">
             <thead>
                 <th>No</th>
                 <th>Judul</th>
+                <th>Kategori</th>
                 <th>Penulis</th>
                 <th>Penerbit</th>
                 <th width="300px">Aksi</th>
@@ -18,6 +29,7 @@
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $item->judul }}</td>
+                        <td>{{ $item->kategori->nama_kategori }}</td>
                         <td>{{ $item->penulis }}</td>
                         <td>{{ $item->penerbit }}</td>
 

@@ -4,6 +4,7 @@
 
         <a href="{{ route('admin.buku.create') }}" class="btn btn-primary"><i class="bi bi-plus"></i>
             Tambah Buku</a>
+
     </div>
     <div class="table-responsive">
         <table class="table table-bordered mt-4">
@@ -14,6 +15,7 @@
                 <th>Penerbit</th>
                 <th>Tahun Terbit</th>
                 <th>Kategori</th>
+                <th>Deskripsi</th>
                 <th>Aksi</th>
             </thead>
             @php
@@ -28,6 +30,7 @@
                         <td>{{ $item->penerbit }}</td>
                         <td>{{ $item->TahunTerbit }}</td>
                         <td>{{ $item->kategori->nama_kategori }}</td>
+                        <td>{{ $item->deskripsi }}</td>
                         <td>
                             <a href="{{ route('admin.buku.edit', $item->id) }}" class="btn btn-warning">
                                 <i class="bi bi-pencil-fill"></i> <!-- Edit button -->

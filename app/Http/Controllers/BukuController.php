@@ -40,6 +40,7 @@ class BukuController extends Controller
             'penulis' => 'required|max:255',
             'penerbit' => 'required|max:255',
             'TahunTerbit' => 'required|max:255',
+            'deskripsi' => 'required',
         ]);
 
         $input['kategori_id'] = $request->kategori_id;
@@ -47,6 +48,7 @@ class BukuController extends Controller
         $input['penulis'] = $request->penulis;
         $input['penerbit'] = $request->penerbit;
         $input['TahunTerbit'] = $request->TahunTerbit;
+        $input['deskripsi'] = $request->deskripsi;
 
         Buku::create($input);
         return redirect()->route('admin.buku.index')->with('success', 'data tersimpan');
@@ -75,19 +77,24 @@ class BukuController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $request->validate([
             'kategori_id' => 'required|max:255',
             'judul' => 'required|max:255',
             'penulis' => 'required|max:255',
             'penerbit' => 'required|max:255',
             'TahunTerbit' => 'required|max:255',
+            'deskripsi' => 'required|max:255',
         ]);
+
+
 
         $input['kategori_id'] = $request->kategori_id;
         $input['judul'] = $request->judul;
         $input['penulis'] = $request->penulis;
         $input['penerbit'] = $request->penerbit;
         $input['TahunTerbit'] = $request->TahunTerbit;
+        $input['deskripsi'] = $request->deskripsi;
 
         // Assuming you have retrieved the book to update (e.g., using find())
         $buku = Buku::findOrFail($id); // Replace $id with the actual ID of the book to update

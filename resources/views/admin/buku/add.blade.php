@@ -38,6 +38,10 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi"></textarea>
+                </div>
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-primary">Simpan</button> <a href="{{ route('admin.buku.index') }}"
                         class="btn btn-danger">Kembali</a>
