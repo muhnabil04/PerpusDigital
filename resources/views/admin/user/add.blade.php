@@ -12,7 +12,7 @@
                 <div class="col-md-6 mb-4">
                     <label class="col-sm-4 control-label">{{ __('username') }} <span class="required"
                             style="color: #dd4b39;">*</span></label>
-                    <input type="text" class="form-control" name="name">
+                    <input type="text" class="form-control" name="username">
                 </div>
                 <div class="col-md-6 mb-4">
                     <label class="col-sm-4 control-label">{{ __('email') }} <span class="required"

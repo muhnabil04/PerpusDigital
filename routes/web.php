@@ -41,11 +41,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:admin|petugas'])->group(function () {
     Route::get('admin/buku', [BukuController::class, 'index'])->name('admin.buku.index');
+    Route::get('admin/buku/cari', [KoleksiController::class, 'cari'])->name('admin.buku.cari');
     Route::get('admin/buku/tambah', [BukuController::class, 'create'])->name('admin.buku.create');
     Route::post('admin/buku/store', [BukuController::class, 'store'])->name('admin.buku.store');
     Route::get('admin/buku/edit/{id}', [BukuController::class, 'edit'])->name('admin.buku.edit');
     Route::get('admin/buku/delete/{id}', [BukuController::class, 'destroy'])->name('admin.buku.delete');
     Route::put('admin/buku/update/{id}', [BukuController::class, 'update'])->name('admin.buku.update');
+    Route::post('peminjam/kembalikan/{id}', [PeminjamanController::class, 'update'])->name('peminjam.buku.update');
     Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('export.pdf');
     //kategori buku
     Route::get('admin/kategori-buku', [KategoriBukuController::class, 'index'])->name('admin.kategori.index');
@@ -63,14 +65,12 @@ Route::middleware(['auth', 'role:admin|petugas'])->group(function () {
 Route::middleware(['auth', 'role:peminjam'])->group(function () {
     //peminjam 
     Route::get('peminjam/buku', [PeminjamanController::class, 'index'])->name('peminjam.buku.index');
-     Route::get('peminjam/buku/cari', [PeminjamanController::class, 'cari'])->name('peminjam.buku.cari');
+    Route::get('peminjam/buku/cari', [PeminjamanController::class, 'cari'])->name('peminjam.buku.cari');
     Route::get('peminjam/buku/detail/{id}', [PeminjamanController::class, 'show'])->name('peminjam.buku.show');
     Route::get('peminjam/pinjamanku', [PeminjamanController::class, 'peminjaman'])->name('peminjam.buku.peminjam');
     Route::get('peminjam/pinjam/{id}', [PeminjamanController::class, 'edit'])->name('peminjam.buku.edit');
     Route::post('peminjam/pinjam/{id}', [PeminjamanController::class, 'store'])->name('peminjam.buku.store');
-    Route::post('peminjam/kembalikan/{id}', [PeminjamanController::class, 'update'])->name('peminjam.buku.update');
     Route::post('peminjam/ulasan/{id}', [PeminjamanController::class, 'ulasan'])->name('peminjam.buku.ulasan');
-
 
     Route::get('peminjam/koleksi', [KoleksiController::class, 'index'])->name('peminjam.koleksi.index');
     Route::post('koleksi/store/{id}', [KoleksiController::class, 'store'])->name('peminjam.koleksi.store');

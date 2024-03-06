@@ -12,7 +12,7 @@
                 <div class="col-md-6 mb-4">
                     <label class="col-sm-4 control-label">{{ __('username') }} <span class="required"
                             style="color: #dd4b39;">*</span></label>
-                    <input type="text" class="form-control" name="name" value="{{ $user->name }}">
+                    <input type="text" class="form-control" name="username" value="{{ $user->username }}">
                 </div>
                 <div class="col-md-6 mb-4">
                     <label class="col-sm-4 control-label">{{ __('email') }} <span class="required"
@@ -22,8 +22,10 @@
                 <div class="col-md-6 mb-4">
                     <label class="col-sm-4 control-label">{{ __('password') }} <span class="required"
                             style="color: #dd4b39;">*</span></label>
-                    <input type="text" class="form-control" name="password">
-                    <small class="text-muted">biarkan kosong jika anda tidak ingin mengubah.</small>
+                    <input type="text" class="form-control" name="password"
+                        value="{{ $user->password }} >
+                    <small class="text-muted">biarkan kosong jika
+                    anda tidak ingin mengubah.</small>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">role</label>

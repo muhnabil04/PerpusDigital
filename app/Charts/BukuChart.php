@@ -22,7 +22,7 @@ class BukuChart
         $chartData = [];
 
         for ($i = 1; $i <= 12; $i++) {
-            $monthlyData = Peminjaman::whereYear('tanggal_peminjaman', $tahun)
+            $monthlyData = (int) Peminjaman::whereYear('tanggal_peminjaman', $tahun)
                 ->whereMonth('tanggal_peminjaman', $i)
                 ->count();
 

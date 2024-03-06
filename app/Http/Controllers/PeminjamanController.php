@@ -81,7 +81,7 @@ class PeminjamanController extends Controller
         // Assuming you have retrieved the book to update (e.g., using find())
         $peminjaman = peminjaman::create($input);
 
-        return redirect()->route('peminjam.buku.index')->with('success', 'Data add successfully');
+        return redirect()->route('peminjam.buku.index')->with('success', 'Buku Berhasil Dipinjam!');;
     }
 
     /**
@@ -122,16 +122,12 @@ class PeminjamanController extends Controller
 
         $input['status_peminjaman'] = 'dikembalikan';
 
-
-        // Assuming you have retrieved the book to update (e.g., using find())
         $peminjaman = Peminjaman::findOrFail($id);
 
 
-
-        // Update the book with the new values
         $peminjaman->update($input);
 
-        return redirect()->route('peminjam.buku.index')->with('success', 'Data updated successfully');
+        return redirect()->route('admin.buku.riwayat')->with('success', 'Buku Berhasil Dikembalikan!');
     }
 
     public function ulasan(Request $request)
@@ -151,7 +147,6 @@ class PeminjamanController extends Controller
             'ulasan' => $request->ulasan, // Fix: use $request->ulasan instead of $request->rating
         ];
 
-        // Assuming you have retrieved the book to update (e.g., using find())
         $ulasan = UlasanBuku::create($input);
 
         return redirect()->route('peminjam.buku.index')->with('success', 'Data added successfully');

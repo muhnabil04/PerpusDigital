@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Buku;
 use App\Models\KategoriBuku;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BukuController extends Controller
 {
@@ -41,6 +42,7 @@ class BukuController extends Controller
             'penerbit' => 'required|max:255',
             'TahunTerbit' => 'required|max:255',
             'deskripsi' => 'required',
+            'foto' => 'required|mimes:jpg,png|max:225',
         ]);
 
         $input['kategori_id'] = $request->kategori_id;
@@ -50,8 +52,11 @@ class BukuController extends Controller
         $input['TahunTerbit'] = $request->TahunTerbit;
         $input['deskripsi'] = $request->deskripsi;
 
+        $fotoPath = $request->file('foto')->store('photos', 'public');
+        $input['foto'] = $fotoPath;
+
         Buku::create($input);
-        return redirect()->route('admin.buku.index')->with('success', 'data tersimpan');
+        return redirect()->route('admin.buku.index')->with('success', 'data tersimpan');;
     }
 
     /**
@@ -77,31 +82,31 @@ class BukuController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
         $request->validate([
             'kategori_id' => 'required|max:255',
             'judul' => 'required|max:255',
             'penulis' => 'required|max:255',
             'penerbit' => 'required|max:255',
             'TahunTerbit' => 'required|max:255',
-            'deskripsi' => 'required|max:255',
+            'deskripsi' => 'required',
+            'foto' => 'nullable|mimes:jpg,png',
         ]);
 
+        $input = $request->only(['kategori_id', 'judul', 'penulis', 'penerbit', 'TahunTerbit', 'deskripsi']);
+        $buku = Buku::findOrFail($id);
 
+        if ($request->hasFile('foto')) {
+            $request->validate([
+                'foto' => 'mimes:jpg,png|max:2048',
+            ]);
+            if ($buku->foto) {
+                Storage::disk('public')->delete($buku->foto);
+            }
 
-        $input['kategori_id'] = $request->kategori_id;
-        $input['judul'] = $request->judul;
-        $input['penulis'] = $request->penulis;
-        $input['penerbit'] = $request->penerbit;
-        $input['TahunTerbit'] = $request->TahunTerbit;
-        $input['deskripsi'] = $request->deskripsi;
+            $fotoPath = $request->file('foto')->store('photos', 'public');
+            $input['foto'] = $fotoPath;
+        }
 
-        // Assuming you have retrieved the book to update (e.g., using find())
-        $buku = Buku::findOrFail($id); // Replace $id with the actual ID of the book to update
-
-
-
-        // Update the book with the new values
         $buku->update($input);
 
         return redirect()->route('admin.buku.index')->with('success', 'Data updated successfully');
@@ -114,7 +119,6 @@ class BukuController extends Controller
     {
         $kategori = Buku::findOrFail($id);
         $kategori->delete();
-
         return back()->with('succes', 'Data berhasil di hapus');
     }
 }

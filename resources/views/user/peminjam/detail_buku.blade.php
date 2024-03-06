@@ -13,6 +13,8 @@
                         Detail Buku
                     </div>
                     <div class="card-body">
+                        <img src="{{ asset('storage/' . $buku->foto) }}" alt="cover buku"
+                            style="max-width: 100%; height: 350px; max-height: 350px;">
                         <h5 class="card-title">Judul : {{ $buku->judul }}</h5>
                         <p class="card-text">Penulis: {{ $buku->penulis }}</p>
                         <p class="card-text">Penerbit: {{ $buku->penerbit }}</p>
@@ -43,7 +45,7 @@
                             <tbody>
                                 @foreach ($ulasan as $item)
                                     <tr>
-                                        <td>{{ $item->user->name }}</td>
+                                        <td>{{ $item->user->username }}</td>
                                         <td>{{ $item->ulasan }}</td>
                                         <td>{{ $item->rating }}</td>
                                     </tr>

@@ -9,13 +9,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
-    <section class="section dashboard">
+    <section>
         <div class="container">
 
             @yield('content')
 
         </div>
     </section>
+
+    
 
 </main><!-- End #main -->
 @include('template/footer')

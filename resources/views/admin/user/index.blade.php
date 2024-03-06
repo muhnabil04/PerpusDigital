@@ -22,7 +22,7 @@
                 @foreach ($users as $user)
                     <tr>
                         <td>{{ $no++ }}</td>
-                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->username }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role }}</td>
                         <td>
@@ -39,4 +39,14 @@
         </table>
         {{ $users->links() }}
     </div>
+
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}'
+            });
+        </script>
+    @endif
 @endsection

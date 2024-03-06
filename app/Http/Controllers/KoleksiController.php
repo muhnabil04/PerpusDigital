@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
 use App\Models\KoleksiPribadi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -79,5 +80,13 @@ class KoleksiController extends Controller
         $koleksi->delete();
 
         return redirect()->route('peminjam.koleksi.index')->with('success', 'Data delete successfully');
+    }
+
+    public function cari(Request $request)
+    {
+        $cari = $request->cari;
+        $title = "peminjaman";
+        $buku = Buku::where('judul', 'like', "%" . $cari . "%")->orWhere('penerbit', 'like', "%" . $cari . "%")->orWhere('penerbit', 'like', "%" . $cari . "%")->orWhere('TahunTerbit', 'like', "%" . $cari . "%")->paginate(6);
+        return view('admin.buku.index', compact('title', 'buku'));
     }
 }

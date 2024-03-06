@@ -19,6 +19,7 @@
             <th>Penerbit</th>
             <th>Tanggal peminjam</th>
             <th>Tanggal pengembalian</th>
+            <th>status</th>
         </thead>
         @php
             $no = 1;
@@ -32,7 +33,12 @@
                     <td>{{ $item->buku->penulis }}</td>
                     <td>{{ $item->buku->penerbit }}</td>
                     <td>{{ $item->tanggal_peminjaman }}</td>
-                    <td>{{ $item->tanggal_pengembalian }}</td>
+                    @if ($item->status_peminjaman == 'dikembalikan')
+                        <td>{{ $item->tanggal_pengembalian }}</td>
+                    @else
+                        <td>-</td>
+                    @endif
+                    <td>{{ $item->status_peminjaman }}</td>
                 </tr>
             @endforeach
         </tbody>

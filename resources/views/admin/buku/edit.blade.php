@@ -44,7 +44,10 @@
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi"
                         value="{{ $buku->deskripsi }}">{{ $buku->deskripsi }}</textarea>
                 </div>
-
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Foto Sampul</label>
+                    <input class="form-control" type="file" id="formFile" name="foto">
+                </div>
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-primary">Simpan</button>
                     <a href="#" class="btn btn-danger">Kembali</a>

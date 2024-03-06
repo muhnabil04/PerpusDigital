@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use App\Models\KategoriBuku;
+use App\Models\peminjaman;
 use Illuminate\Http\Request;
 use App\Charts\BukuChart;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class DashboardController extends Controller
@@ -24,6 +26,16 @@ class DashboardController extends Controller
         return view('dashboard', $data);
     }
 
+    public function notif()
+    {
+        $user = Auth::user();
+        $notif = Peminjaman::where('user_id', $user->id)
+            ->orWhere('status_peminjaman', 'dipinjam')
+            ->count();
+        $test = "test";
+
+        return view('template.sidebar', compact('notif', 'test'));
+    }
 
     /**
      * Display a listing of the resource.

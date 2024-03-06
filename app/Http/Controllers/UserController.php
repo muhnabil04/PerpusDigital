@@ -31,14 +31,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:users,name',
+            'username' => 'required|unique:users,username',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'role' => 'required|in:peminjam,petugas,admin',
         ]);
 
         User::create([
-            'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role' => $request->role,
@@ -72,14 +72,14 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $request->validate([
-            'name' => 'required|unique:users,name,' . $user->id,
+            'username' => 'required|unique:users,username,' . $user->id,
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|min:6',
             'role' => 'required|in:peminjam,petugas,admin',
         ]);
 
         $user->update([
-            'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => $request->password ? bcrypt($request->password) : $user->password,
             'role' => $request->role,

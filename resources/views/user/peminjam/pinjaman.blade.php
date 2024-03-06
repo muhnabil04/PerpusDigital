@@ -21,25 +21,26 @@
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $item->buku->judul }}</td>
+                        <td>{{ $item->tanggal_peminjaman }}</td>
                         @if ($item->status_peminjaman == 'dikembalikan')
                             <td>{{ $item->tanggal_pengembalian }}</td>
                         @else
                             <td>-</td>
                         @endif
-                        <td>{{ $item->tanggal_peminjaman }}</td>
+
                         <td>{{ $item->status_peminjaman }}</td>
                         <td>
-                            @if ($item->status_peminjaman == 'dipinjam')
+                            {{-- @if ($item->status_peminjaman == 'dipinjam')
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                     data-bs-target="#pinjamModal-{{ $item->id }}">
                                     Kembalikan Buku
                                 </button>
-                            @else
-                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                    data-bs-target="#ulasanModal-{{ $item->id }}">
-                                    Beri Ulasan
-                                </button>
-                            @endif
+                            @else --}}
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#ulasanModal-{{ $item->id }}">
+                                Beri Ulasan
+                            </button>
+                            {{-- @endif --}}
                             <!-- Edit Modal -->
                             <div class="modal fade" id="pinjamModal-{{ $item->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="pinjamModalLabel" aria-hidden="true">
